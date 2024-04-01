@@ -4,9 +4,8 @@
  */
 package Views;
 
-import Controllers.Controller;
-import Models.Song;
-
+import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author nando
@@ -54,11 +53,14 @@ public class Main_Window extends javax.swing.JFrame {
         jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(640, 480));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(640, 480));
+
+        Song_Progress_Slider.setMinimumSize(new java.awt.Dimension(0, 0));
 
         Next_Song_Button.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Next_Song_Button.setText("Next");
+        Next_Song_Button.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         Next_Song_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Next_Song_ButtonActionPerformed(evt);
@@ -74,6 +76,7 @@ public class Main_Window extends javax.swing.JFrame {
         });
 
         Song_Image_Label.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        Song_Image_Label.setMinimumSize(new java.awt.Dimension(0, 0));
 
         Total_Time_Label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Total_Time_Label.setText("00:00:00");
@@ -101,14 +104,14 @@ public class Main_Window extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#", "Artist", "Title", "Duration"
+                "#", "Title", "Duration"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -119,6 +122,7 @@ public class Main_Window extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        Song_Table.setSurrendersFocusOnKeystroke(true);
         jScrollPane2.setViewportView(Song_Table);
 
         Remove_Song_Button.setBackground(new java.awt.Color(255, 255, 51));
@@ -128,6 +132,8 @@ public class Main_Window extends javax.swing.JFrame {
                 Remove_Song_ButtonActionPerformed(evt);
             }
         });
+
+        Volume_Slider.setMinimumSize(new java.awt.Dimension(0, 0));
 
         jLabel1.setText("Volume:");
 
@@ -174,7 +180,7 @@ public class Main_Window extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(Song_Name_Label)
-                                        .addGap(217, 217, 217)
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(Exit_Button))
                                     .addComponent(Song_Image_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
@@ -182,16 +188,16 @@ public class Main_Window extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(Current_Time_Label)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(Song_Progress_Slider, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
+                                                .addComponent(Song_Progress_Slider, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(Previous_Song_Button)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                                                 .addComponent(Play_Pause_Button)
-                                                .addGap(0, 0, Short.MAX_VALUE)))
-                                        .addGap(18, 18, 18)
+                                                .addGap(0, 53, Short.MAX_VALUE)))
+                                        .addGap(6, 6, 6)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(Next_Song_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                            .addComponent(Total_Time_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                            .addComponent(Total_Time_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(Next_Song_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Clear_Playlist_Button)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -209,7 +215,7 @@ public class Main_Window extends javax.swing.JFrame {
                         .addComponent(Input_Song_Choice, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Select_Song_Button)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,9 +228,9 @@ public class Main_Window extends javax.swing.JFrame {
                     .addComponent(Exit_Button))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Song_Image_Label, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                        .addComponent(Song_Image_Label, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Song_Progress_Slider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,7 +238,7 @@ public class Main_Window extends javax.swing.JFrame {
                             .addComponent(Current_Time_Label))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Next_Song_Button)
+                            .addComponent(Next_Song_Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Previous_Song_Button)
                             .addComponent(Play_Pause_Button))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -280,6 +286,18 @@ public class Main_Window extends javax.swing.JFrame {
     private void Clear_Playlist_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clear_Playlist_ButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Clear_Playlist_ButtonActionPerformed
+    
+    public void Import_Song_Button_Listener(ActionListener AL) {
+        Import_Song_Button.addActionListener(AL);
+    }
+    
+    public DefaultTableModel Get_Song_Table_Model(){
+        return (DefaultTableModel)Song_Table.getModel();
+    }
+    
+    public void Set_Song_Table_Model(DefaultTableModel newModel){
+        Song_Table.setModel(newModel);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Clear_Playlist_Button;

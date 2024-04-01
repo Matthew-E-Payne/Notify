@@ -4,6 +4,8 @@
 package Notify;
 
 import Views.Main_Window;
+import Models.Main_Model;
+import Controllers.Controller;
 
 /**
  *
@@ -12,7 +14,10 @@ import Views.Main_Window;
 public class Notify {
 
     public static void main(String[] args) {
-        Main_Window gui = new Main_Window();
-        gui.setVisible(true);
+        Main_Window theView = new Main_Window();
+        Main_Model theModel = new Main_Model();
+        Controller theController = new Controller(theView,theModel);
+
+        theView.setVisible(true);
     }
 }
